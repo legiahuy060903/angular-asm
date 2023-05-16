@@ -1,0 +1,45 @@
+<div class="capTable p-2">DANH SÁCH DỰ ÁN</div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-4 ">
+            <select class="form-select form-select mb-3" #ref (change)="getSelectedValue(ref.value)">
+                <option selected>Bộ lộc theo ngày</option>
+                <option value="?_sort=startDay&_order=desc">Gần đây</option>
+                <option value="?_sort=startDay&_order=asc">Cũ hơn</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="keyword" (keyup)="changeKey()">
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="listProject && listProject.length >0; else notListProject">
+    <table class="table table-striped-columns table-hover">
+        <thead>
+            <tr>
+                <th> id </th>
+                <th> Tên dự án</th>
+                <th> Ngày bắt đầu</th>
+                <th> Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listProject">
+                <td> {{item.id}} </td>
+
+                <td><a class="text-dark" [routerLink]="['/project', item.id]">
+                        {{item.nameProject}}
+                    </a> </td>
+                <td> {{item.startDay}}</td>
+                <td> {{item.money}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #notListProject>
+    <div class="text-center">
+        Không tìm thấy kết quả
+    </div>
+</ng-template>

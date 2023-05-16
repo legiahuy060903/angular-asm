@@ -1,0 +1,45 @@
+<div class="capTable p-2">DANH SÁCH NHÂN VIÊN</div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-4 ">
+            <select class="form-select form-select mb-3" #refS (change)="getSelectedValue(refS.value)">
+                <option selected>Bộ lộc theo ngày</option>
+                <option value="?_sort=startDay&_order=desc">Gần đây</option>
+                <option value="?_sort=startDay&_order=asc">Cũ hơn</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="keyword" (keyup)="changeKey()">
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div *ngIf="ListStaff && ListStaff.length >0; else notTask">
+    <table class="table table-striped-columns table-hover">
+        <thead>
+            <tr>
+                <th> id </th>
+                <th> Họ và Tên</th>
+                <th> Ngày sinh</th>
+                <th> Phái</th>
+                <th> Khu vực</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ListStaff">
+                <td> {{item.id}} </td>
+                <td> {{item.firstName + " " +item.lastName}}</td>
+                <td> {{item.ns}}</td>
+                <td> {{item.gender ? "Nam" :"Nữ"}}</td>
+                <td> {{item.area}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #notTask>
+    <div class="text-center">
+        Không tìm thấy kết quả
+    </div>
+</ng-template>

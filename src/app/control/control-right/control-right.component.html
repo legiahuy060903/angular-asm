@@ -1,0 +1,61 @@
+<div class="container ">
+    <div class="accordion accordion-flush border border-1 rounded " id="accordionFlushRight">
+        <div class="accordion-item ">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Bắc
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushRight">
+                <div class="accordion-body">
+                    <div class="list-group" *ngFor="let item of bac">
+                        <a href="#" class="list-group-item list-group-item-action bgContainer resetBorder"
+                            aria-current="true">
+                            #{{item.id}} {{ item.firstName + " "+ item.lastName}}
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">{{item.status}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item ">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Trung
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushRight">
+                <div class="accordion-body">
+                    <div class="list-group" *ngFor="let item of trung">
+                        <a href="#" class="list-group-item list-group-item-action bgContainer resetBorder"
+                            aria-current="true">
+                            #{{item.id}} {{ item.firstName + " "+ item.lastName}}
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">{{item.status}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item ">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                    Nam
+                </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushRight">
+                <div class="accordion-body">
+                    <div class="list-group" *ngFor="let item of nam">
+                        <a href="#" class="list-group-item list-group-item-action bgContainer resetBorder"
+                            aria-current="true">
+                            #{{item.id}} {{ item.firstName + " "+ item.lastName}}
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">{{item.status}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

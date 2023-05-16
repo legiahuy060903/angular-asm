@@ -1,0 +1,30 @@
+<div class="container" *ngIf="pj?.id ; else noPj">
+    <div class="capTable p-2">Chi tiết dự án</div>
+
+
+    <div class="card mb-3 m-auto my-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="assets/avatarex.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{pj?.nameProject}}</h5>
+                    <div class="d-flex"><span class="col-2"> ID : {{pj?.id}} </span><span>Ngày
+                            băt đầu : {{pj?.startDay |date: 'dd/MM/Y'}} </span>
+                    </div>
+                    <div class="card-text mt-2">Chi phí dự án : {{pj?.money | currency}}</div>
+                    <div class="card-text mt-2">Thành viên :
+                        <div *ngFor="let item of staffInProject">- {{item.firstName+" "+item.lastName}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noPj>
+    <div class="text-center mt-5 p-3">No Project available.</div>
+</ng-template>

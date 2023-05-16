@@ -1,1 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+input,
+select,
+textarea {
+  background-color: transparent;
+  outline: none;
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+body {
+  min-height: 100vh;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* caption {
+    background: #6610f2;
+    color: #ffffff;
+    font-size: 19px;
+    text-align: center;
+} */
+.capTable {
+    background: #6610f2;
+    color: #ffffff !important;
+    font-size: 19px;
+    text-align: center;
+}
+.ul-task li {
+  list-style-type: "\BB";
+}
+.bgContainer{
+  background: #6610f2 !important;
+  color: #ffffff!important;
+}
+.resetBorder{
+ border-radius: 0 !important;
+}

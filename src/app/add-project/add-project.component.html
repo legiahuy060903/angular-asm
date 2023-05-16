@@ -1,0 +1,14 @@
+<div class="container">
+    <form class="mt-3 shadow border border-light border border-2 rounded">
+        <div class="capTable p-2 rounded">THÊM DỰ ÁN</div>
+        <p class="mb-3">Tên dự án <input class="form-control"></p>
+        <p class="mb-3">Ngày Start <input class="form-control" type="date"></p>
+        <p class="mb-3">Tiền <input class="form-control"></p>
+        <p class="mb-3">Leader <select class="form-control"></select></p>
+        <p class="mb-3">Thành viên <select class="form-control">
+                <option selected>Open this select menu</option>
+                <option *ngFor="let item of ListStaff" value="{{item.id}}">{{item.firstName+" "+item.lastName}}</option>
+            </select></p>
+        <p><button class="btn btn-primary p-2">Thêm dự án</button></p>
+    </form>
+</div>
