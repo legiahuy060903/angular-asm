@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ControlLeftComponent } from './control/control-left/control-left.component';
 import { ControlRightComponent } from './control/control-right/control-right.component';
 import { ControlComponent } from './control/control.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { ControlComponent } from './control/control.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
