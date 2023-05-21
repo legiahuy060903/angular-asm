@@ -20,7 +20,7 @@ export class AddProjectComponent {
     this.formAddProject = this._fb.group({
       nameProject: ['', Validators.required],
       date: ['', Validators.required],
-      price: ['', Validators.required],
+      price: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       leader: ['', Validators.required],
       staff: ['', Validators.required],
     })

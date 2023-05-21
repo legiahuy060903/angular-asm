@@ -16,6 +16,7 @@ import { ControlLeftComponent } from './control/control-left/control-left.compon
 import { ControlRightComponent } from './control/control-right/control-right.component';
 import { ControlComponent } from './control/control.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DetailProjectComponent,
     ControlLeftComponent,
     ControlRightComponent,
-    ControlComponent
+    ControlComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

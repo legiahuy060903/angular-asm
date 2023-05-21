@@ -22,5 +22,4 @@ export class ControlRightComponent {
     this.trung = this.ListStaff.filter(item => item.area === 'Trung');
     this.nam = this.ListStaff.filter(item => item.area === 'Nam');
   }
-
 }
