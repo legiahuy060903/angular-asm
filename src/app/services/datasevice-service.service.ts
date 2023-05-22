@@ -13,22 +13,13 @@ export class DataService {
     constructor(private res: HttpClient) { }
 
     getStaffs(query: string): Observable<Staff[]> {
-        return this.res.get<Staff[]>(`http://localhost:3000/ListStaff${query}`).pipe(
-            tap(data => console.log(data)),
-            catchError(e => of([]))
-        )
+        return this.res.get<Staff[]>(`http://localhost:3000/ListStaff${query}`);
     }
     getProjects(query: string): Observable<Project[]> {
-        return this.res.get<Project[]>(`http://localhost:3000/ListProject${query}`).pipe(
-            tap(data => console.log(data)),
-            catchError(e => of([]))
-        )
+        return this.res.get<Project[]>(`http://localhost:3000/ListProject${query}`);
     }
     getTasks(query: string): Observable<Task[]> {
-        return this.res.get<Task[]>(`http://localhost:3000/ListTask${query}`).pipe(
-            tap(data => console.log(data)),
-            catchError(e => of([]))
-        )
+        return this.res.get<Task[]>(`http://localhost:3000/ListTask${query}`);
     }
     getIdProjects(id: number): any {
         return this.res.get<Project | undefined>(`http://localhost:3000/ListProject/${id}`);

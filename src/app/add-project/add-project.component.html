@@ -24,6 +24,7 @@
             </div>
         </div>
         <div class="mb-3">Leader <select formControlName="leader" class="form-control">
+                <option value="">Open this select menu</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -34,7 +35,7 @@
         </div>
 
         <div class="mb-3">Thành viên <select formControlName="staff" class="form-control">
-                <option selected>Open this select menu</option>
+                <option value="">Open this select menu</option>
                 <option *ngFor="let item of ListStaff" value="{{item.id}}">{{item.firstName+" "+item.lastName}}</option>
             </select>
             <div class="text-danger" *ngIf=" submitted  && f['staff'].errors">
@@ -44,7 +45,7 @@
 
         <div class="d-flex justify-content-end ">
             <button class="btn btn-success p-2 shadow ">Thêm dự án</button>
-            <div class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Reset</div>
+            <div class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</div>
         </div>
     </form>
 </div>

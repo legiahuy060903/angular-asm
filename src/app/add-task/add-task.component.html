@@ -20,7 +20,7 @@
         </div>
 
         <div class="mb-3">Dự án <select class="form-control" formControlName="project">
-                <option selected>Open this select menu</option>
+                <option value="">Open this select menu</option>
                 <option *ngFor="let item of listProject" value="{{item.id}}">{{item.nameProject}}</option>
             </select>
             <div class="text-danger" *ngIf="submitted && f['project'].errors">
@@ -28,36 +28,36 @@
             </div>
         </div>
         <div class="mb-3">Người thực hiện <select formControlName="staff" class="form-control">
-                <option selected>Open this select menu</option>
+                <option value="">Open this select menu</option>
                 <option *ngFor="let item of ListStaff" value="{{item.id}}">{{item.firstName+" "+item.lastName}}</option>
             </select>
             <div class="text-danger" *ngIf="submitted && f['staff'].errors">Vui
-                lòng chọn nhân viên
+                lòng chọn người thực hiện
             </div>
         </div>
         <div class="mb-3">Độ ưu tiên <select formControlName="priority" class="form-control">
+                <option value="">Open this select menu</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
             <div class="text-danger" *ngIf="submitted  && f['priority'].errors">Vui
-                lòng chọn nhân
-                viên
+                lòng chọn độ ưu tiên
             </div>
         </div>
         <div class="mb-3">Trạng thái <select formControlName="status" class="form-control">
+                <option value="">Open this select menu</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
             <div class="text-danger" *ngIf="submitted  && f['status'].errors">Vui
-                lòng chọn nhân
-                viên
+                lòng chọn trạng thái
             </div>
         </div>
         <div class="d-flex justify-content-end ">
             <button class="btn btn-success p-2 shadow ">Thêm công việc</button>
-            <button class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Reset</button>
+            <button class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</button>
         </div>
     </form>
 </div>

@@ -8,9 +8,9 @@
             <div class="col-6 p-2">Chi phí còn lại :</div>
         </div>
         <div class="col-6 d-flex flex-column mb-3">
-            <div class="col-6 p-2">$123.323</div>
-            <div class="col-6 p-2">$100.000</div>
-            <div class="col-6 p-2">$23.323</div>
+            <div class="col-6 p-2">{{ money | vnd}}</div>
+            <div class="col-6 p-2">{{ money *10/100| vnd}}</div>
+            <div class="col-6 p-2">{{ money -money *10/100 | vnd}}</div>
         </div>
     </div>
     <div class="capTable p-2">Thành viên của nhóm</div>

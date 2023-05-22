@@ -26,11 +26,12 @@ export class ControlLeftComponent implements OnInit {
     name: "Phạm Hoàng Huy"
   }]
   constructor(private d: DataService) {
+
+  }
+  ngOnInit(): void {
     this.d.getProjects('').subscribe((data: Project[]) => this.ListProject = data);
     this.d.getStaffs('').subscribe((data: Staff[]) => this.ListStaff = data);
     this.d.getTasks('').subscribe((data: Task[]) => this.ListTask = data);
-  }
-  ngOnInit(): void {
   }
 
   ngDoCheck() {

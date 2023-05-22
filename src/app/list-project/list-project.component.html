@@ -32,8 +32,8 @@
                 <td><a class="text-dark" [routerLink]="['/project', item.id]">
                         {{item.nameProject}}
                     </a> </td>
-                <td> {{item.startDay}}</td>
-                <td> {{item.money}}</td>
+                <td> {{item.startDay | date:'dd/MM/Y'}}</td>
+                <td> {{item.money |vnd}}</td>
             </tr>
         </tbody>
     </table>

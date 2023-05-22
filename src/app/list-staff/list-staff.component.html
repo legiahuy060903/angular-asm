@@ -3,9 +3,9 @@
     <div class="row justify-content-between">
         <div class="col-4 ">
             <select class="form-select form-select mb-3" #refS (change)="getSelectedValue(refS.value)">
-                <option selected>Bộ lộc theo ngày</option>
-                <option value="?_sort=startDay&_order=desc">Gần đây</option>
-                <option value="?_sort=startDay&_order=asc">Cũ hơn</option>
+                <option selected>Bộ lộc theo ID</option>
+                <option value="?_sort=id&_order=desc">Gần đây</option>
+                <option value="?_sort=id&_order=asc">Cũ hơn</option>
             </select>
         </div>
         <div class="col-4">
@@ -31,8 +31,8 @@
             <tr *ngFor="let item of ListStaff">
                 <td> {{item.id}} </td>
                 <td> {{item.firstName + " " +item.lastName}}</td>
-                <td> {{item.ns}}</td>
-                <td> {{item.gender ? "Nam" :"Nữ"}}</td>
+                <td> {{item.ns | date:'dd/MM/Y'}}</td>
+                <td> {{item.gender | gender}}</td>
                 <td> {{item.area}}</td>
             </tr>
         </tbody>

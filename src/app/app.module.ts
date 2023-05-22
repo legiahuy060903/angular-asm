@@ -17,6 +17,7 @@ import { ControlRightComponent } from './control/control-right/control-right.com
 import { ControlComponent } from './control/control.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { GenderPipe, VndPipe } from './pipes/mypipes.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,9 @@ import { HeaderComponent } from './header/header.component';
     ControlLeftComponent,
     ControlRightComponent,
     ControlComponent,
-    HeaderComponent
+    HeaderComponent,
+    VndPipe,
+    GenderPipe,
   ],
   imports: [
     BrowserModule,
