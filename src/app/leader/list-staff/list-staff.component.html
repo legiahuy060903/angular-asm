@@ -1,0 +1,148 @@
+<div class="capTable p-2">DANH SÁCH NHÂN VIÊN</div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-4 ">
+            <select class="form-select form-select mb-3" #refS (change)="getSelectedValue(refS.value)">
+                <option selected>Bộ lộc theo ID</option>
+                <option value="?_sort=id&_order=desc">Gần đây</option>
+                <option value="?_sort=id&_order=asc">Cũ hơn</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="keyword" (keyup)="changeKey()">
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+
+<div *ngIf="ListStaff && ListStaff.length >0; else notTask">
+    <p-table [value]="ListStaff" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Tổng {totalRecords}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> id </th>
+                <th> Họ và Tên</th>
+                <th> Ngày sinh</th>
+                <th> Phái</th>
+                <th> Công việc</th>
+                <th> Khu vực</th>
+                <th class="ps-4">Chỉnh sửa</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td> {{item.id}} </td>
+                <td> {{item.firstName + " " +item.lastName}}</td>
+                <td> {{item.ns | date:'dd/MM/Y'}}</td>
+                <td> {{item.gender | gender}}</td>
+                <td>
+                    <div *ngIf="item.status === 'Trống'; else ban"><p-tag severity="info" value="Trống"
+                            [rounded]="true"></p-tag></div>
+                </td>
+                <td> {{item.area}}</td>
+                <td>
+                    <i (click)="showDialog(item.id)" class="mx-3 text-info pi pi-pencil"></i>
+                    <i (click)="confirm2(item.id)" class="pi pi-trash text-danger"></i>
+
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+
+        </ng-template>
+    </p-table>
+</div>
+
+<ng-template #notTask>
+    <div class="text-center">
+        Không tìm thấy kết quả
+    </div>
+</ng-template>
+<div class="card flex justify-content-center">
+    <p-dialog header="Sửa thông tin nhân viên" [(visible)]="visible" [style]="{width: '50vw' ,height: '70vh'}">
+        <form class=" p-3 shadow container-fluid ounded" (ngSubmit)="onSubmit()" [formGroup]="formEditStaff">
+            <div class="row g-3 my-3">
+                <div class="col">
+                    <input type="hidden" formControlName="id">
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="Họ">
+                    <div class="text-danger" *ngIf=" submitted  && f['firstName'].errors">
+                        <div> Bạn chưa nhập Họ nhân viên</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="lastName" placeholder="Tên">
+                    <div class="text-danger" *ngIf=" submitted  && f['lastName'].errors">
+                        <div> Bạn chưa nhập Tên nhân viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 my-3">
+                <div class="col">
+                    <input type="date" class="form-control" formControlName="ns">
+                    <div class="text-danger" *ngIf=" submitted  && f['ns'].errors">
+                        <div> Bạn chưa nhập Ngày</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <select formControlName="gender" class="form-control">
+                        <option value="">Chọn giới tính</option>
+                        <option [ngValue]="false">Nam</option>
+                        <option [ngValue]="true">Nữ</option>
+                    </select>
+                    <div class="text-danger" *ngIf=" submitted  && f['gender'].errors">
+                        <div> Bạn chưa nhập giới tính nhân viên</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 my-3">
+                <div class="col">
+                    <select formControlName="area" class="form-control">
+                        <option value="">Chọn vùng</option>
+                        <option value="Bắc">Bắc</option>
+                        <option value="Trung">Trung</option>
+                        <option value="Nam">Nam</option>
+                    </select>
+                    <div class="text-danger" *ngIf=" submitted  && f['area'].errors">
+                        <div> Bạn chưa nhậ vùng miền giới nhân viên</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <select formControlName="status" class="form-control">
+                        <option value="">Chọn trạng thái</option>
+                        <option value="Trống">Trống</option>
+                        <option value="Bận">Bận</option>
+                    </select>
+                    <div class="text-danger" *ngIf=" submitted  && f['gender'].errors">
+                        <div> Bạn chưa trạng thái</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end ">
+                <button class="btn btn-success shadow  px-4">Cập nhật</button>
+                <div class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</div>
+            </div>
+        </form>
+    </p-dialog>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Xóa nhân viên</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-check" label="Có" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Không" (click)="cd.reject()"></button>
+
+    </ng-template>
+</p-confirmDialog>
+<ng-template #ban>
+    <p-tag severity="warning" value="Bận" [rounded]="true"></p-tag>
+</ng-template>

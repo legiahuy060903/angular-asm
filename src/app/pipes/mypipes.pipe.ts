@@ -10,5 +10,16 @@ export class GenderPipe implements PipeTransform {
     transform(value: any, ...args: any[]) {
         return value ? "Nam" : "Nữ";
     }
-
+}
+@Pipe({ name: 'priority' })
+export class PriorityPipe implements PipeTransform {
+    transform(value: any, ...args: any[]) {
+        if (value === 1) {
+            return `Thấp`
+        } else if (value === 2) {
+            return `Trung bình`
+        } else {
+            return `Cao`
+        }
+    }
 }

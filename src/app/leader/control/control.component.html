@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="capTable p-2">Tổng thể về dự án</div>
+    <div class="row">
+        <div class="col-6 d-flex flex-column mb-3">
+            <div class="col-6 p-2">Chi phí dự án :</div>
+            <div class="col-6 p-2">Chi phí đã chi :</div>
+            <div class="col-6 p-2">Chi phí còn lại :</div>
+        </div>
+        <div class="col-6 d-flex flex-column mb-3">
+            <div class="col-6 p-2">{{ money | vnd}}</div>
+            <div class="col-6 p-2">{{ money *10/100| vnd}}</div>
+            <div class="col-6 p-2">{{ money -money *10/100 | vnd}}</div>
+        </div>
+    </div>
+    <div class="capTable p-2">Thành viên của nhóm</div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">Khu vực</th>
+                <th scope="col">Số lượng nhân viên</th>
+                <th scope="col">Số lượng tạm nghỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Bắc</td>
+                <td>{{bac.length}}</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Trung</td>
+                <td>{{trung.length}}</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Nam</td>
+                <td>{{nam.length}}</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

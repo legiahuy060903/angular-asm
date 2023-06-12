@@ -1,0 +1,68 @@
+<div class="container">
+    <form class=" border border-2 p-3 shadow  rounded" (ngSubmit)="onSubmit()" [formGroup]="formAddStaff">
+        <div class="capTable p-2 rounded">THÊM NHÂN VIÊN</div>
+        <div class="row g-3 my-3">
+            <div class="col">
+                <input type="text" class="form-control" formControlName="firstName" placeholder="Họ">
+                <div class="text-danger" *ngIf=" submitted  && f['firstName'].errors">
+                    <div> Bạn chưa nhập Họ nhân viên</div>
+                </div>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" formControlName="lastName" placeholder="Tên">
+                <div class="text-danger" *ngIf=" submitted  && f['lastName'].errors">
+                    <div> Bạn chưa nhập Tên nhân viên</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 my-3">
+            <div class="col">
+                <input type="date" class="form-control" formControlName="ns">
+                <div class="text-danger" *ngIf=" submitted  && f['ns'].errors">
+                    <div> Bạn chưa nhập Ngày</div>
+                </div>
+            </div>
+            <div class="col">
+                <select formControlName="gender" class="form-control">
+                    <option value="">Chọn giới tính</option>
+                    <option [ngValue]="false">Nam</option>
+                    <option [ngValue]="true">Nữ</option>
+                </select>
+                <div class="text-danger" *ngIf=" submitted  && f['gender'].errors">
+                    <div> Bạn chưa nhập giới tính nhân viên</div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 my-3">
+            <div class="col">
+                <select formControlName="area" class="form-control">
+                    <option value="">Chọn vùng</option>
+                    <option value="Bắc">Bắc</option>
+                    <option value="Trung">Trung</option>
+                    <option value="Nam">Nam</option>
+                </select>
+                <div class="text-danger" *ngIf=" submitted  && f['area'].errors">
+                    <div> Bạn chưa nhậ vùng miền giới nhân viên</div>
+                </div>
+            </div>
+            <div class="col">
+                <select formControlName="status" class="form-control">
+                    <option value="">Chọn trạng thái</option>
+                    <option value="Trống">Trống</option>
+                    <option value="Bận">Bận</option>
+                </select>
+                <div class="text-danger" *ngIf=" submitted  && f['gender'].errors">
+                    <div> Bạn chưa trạng thái</div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end ">
+            <button class="btn btn-success p-2 shadow ">Thêm nhân viên</button>
+            <div class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</div>
+        </div>
+    </form>
+</div>
+
+
+<p-toast></p-toast>

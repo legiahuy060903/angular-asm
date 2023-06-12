@@ -1,0 +1,123 @@
+<div class="capTable p-2">DANH SÁCH DỰ ÁN</div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-4 ">
+            <select class="form-select form-select mb-3" #ref (change)="getSelectedValue(ref.value)">
+                <option selected>Bộ lộc theo ngày</option>
+                <option value="?_sort=startDay&_order=desc">Gần đây</option>
+                <option value="?_sort=startDay&_order=asc">Cũ hơn</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="keyword" (keyup)="changeKey()">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="listProject && listProject.length >0; else notListProject">
+    <p-table [value]="listProject" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Tổng {totalRecords}  ">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> id </th>
+                <th> Tên dự án</th>
+                <th> Ngày bắt đầu</th>
+                <th> Tiền</th>
+                <th class="ps-4">Chỉnh sửa</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td> {{item.id}} </td>
+
+                <td><span class="text-dark" [routerLink]="['/project', item.id]">
+                        {{item.nameProject}}
+                    </span> </td>
+                <td> {{item.startDay | date:'dd/MM/Y'}}</td>
+                <td> {{item.money | vnd}}</td>
+                <td>
+                    <i (click)="showDialog(item.id)" class="mx-3 text-info pi pi-pencil"></i>
+                    <i (click)="confirm2(item.id)" class="pi pi-trash text-danger"></i>
+
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+    </p-table>
+</div>
+
+<ng-template #notListProject>
+    <div class="text-center">
+        Không tìm thấy kết quả
+    </div>
+</ng-template>
+<div class="card flex justify-content-center">
+    <p-dialog header="Sửa thông tin dự án" [(visible)]="visible" [style]="{width: '50vw' ,height: '100vh'}">
+        <form class=" p-3 shadow container-fluid rounded" (ngSubmit)="onSubmit()" [formGroup]="formEditProject">
+            <div class="mb-3">Tên dự án <input formControlName="nameProject" class="form-control">
+                <div class="text-danger" *ngIf=" submitted  && f['nameProject'].errors">
+                    <div>Tên dự án bạn chưa nhập</div>
+                </div>
+            </div>
+
+            <div class="mb-3">Ngày Start <input formControlName="startDay" class="form-control" type="date">
+                <div class="text-danger" *ngIf=" submitted  && f['startDay'].errors">
+                    <div>Bạn chưa chọn ngày bắt đầu</div>
+                </div>
+            </div>
+
+            <div class="mb-3">Tiền <input formControlName="money" class="form-control">
+                <div *ngIf=" submitted  && f['money'].invalid">
+                    <div class="text-danger" *ngIf="f['money'].errors && f['money'].errors['required']">
+                        <div>Bạn chưa chọn nhập giá</div>
+                    </div>
+                    <div class="text-danger" *ngIf="f['money'].errors && f['money'].errors['pattern']">
+                        <div>Hãy nhập sô tiền dạng số</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">Leader <select formControlName="leader" class="form-control">
+                    <option value="">Open this select menu</option>
+                    <option [ngValue]="1">1</option>
+                    <option [ngValue]="2">2</option>
+                    <option [ngValue]="3">3</option>
+                </select>
+                <div class="text-danger" *ngIf=" submitted  && f['leader'].errors">
+                    <div>Bạn chưa chọn Leader</div>
+                </div>
+            </div>
+
+            <div class="mb-3">Thành viên <select formControlName="member" multiple class="form-control py-4">
+
+                    <option *ngFor="let item of ListStaff" [ngValue]="item.id">{{item.firstName+" "+item.lastName}}
+                    </option>
+                </select>
+                <div class="text-danger" *ngIf=" submitted  && f['member'].errors">
+                    <div>Bạn chưa chọn thành viên</div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end ">
+                <button class="btn btn-success p-2 shadow ">Cập nhật dự án</button>
+                <div class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</div>
+            </div>
+        </form>
+    </p-dialog>
+</div>
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Xóa dự án</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-check" label="Có" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Không" (click)="cd.reject()"></button>
+    </ng-template>
+</p-confirmDialog>

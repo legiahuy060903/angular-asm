@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 *,
 *:before,
 *:after {
@@ -42,8 +45,8 @@ body {
     text-align: center;
 } */
 .capTable {
-    background: #6610f2;
-    color: #ffffff !important;
+    background: #ffffff;
+    color: #6610f2 !important;
     font-size: 19px;
     text-align: center;
 }
@@ -57,3 +60,23 @@ body {
 .resetBorder{
  border-radius: 0 !important;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-button {
+  background: #ffffff
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #ffffff
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f5f1f1;
+  box-shadow: #f5f1f1;
+}
+
+
+

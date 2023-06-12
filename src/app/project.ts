@@ -20,7 +20,7 @@ export interface Task {
     nameTask: string;
     description: string;
     idProject: number;
-    idStaff: number;
+    member: number[];
     priority: number;
     status: number;
 }

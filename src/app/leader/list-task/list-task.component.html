@@ -1,0 +1,146 @@
+<div class="capTable p-2">DANH SÁCH TASK</div>
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="col-4 ">
+            <select class="form-select form-select mb-3" #refS (change)="getSelectedValue(refS.value)">
+                <option selected>Bộ lộc theo độ ưu tiên </option>
+                <option value="?_sort=priority&_order=desc">Cao</option>
+                <option value="?_sort=priority&_order=asc">Thấp</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" [(ngModel)]="keyword" (keyup)="changeKey()">
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container" *ngIf="listTask && listTask.length >0; else notTask">
+
+    <p-table [value]="listTask" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Tổng {totalRecords}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> Tên công việc</th>
+                <th> Dự án</th>
+                <th> Độ ưu tiên</th>
+
+                <th> Trạng thái</th>
+                <th class="ps-4">Chỉnh sửa</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr [ngSwitch]="item.status">
+                <td> {{item.nameTask}}</td>
+                <td> {{getId(item.idProject)}}</td>
+                <td> {{item.priority | priority}}</td>
+                <td>
+                    <div *ngSwitchCase="0">
+                        <p-tag value="Khởi tạo"></p-tag>
+                    </div>
+                    <div *ngSwitchCase="1">
+                        <p-tag severity="warning" value="Triển khai"></p-tag>
+                    </div>
+                    <div *ngSwitchCase="2">
+                        <p-tag severity="success" value="Hoàn tất"></p-tag>
+                    </div>
+                </td>
+                <td>
+                    <i (click)="showDialog(item.id)" class="mx-3 text-info pi pi-pencil"></i>
+                    <i (click)="confirm2(item.id)" class="pi pi-trash text-danger"></i>
+
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+    </p-table>
+</div>
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Xóa công việc</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-check" label="Có" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Không" (click)="cd.reject()"></button>
+
+    </ng-template>
+</p-confirmDialog>
+
+
+<p-dialog header="Sửa thông tin công việc" [(visible)]="visible" [style]="{width: '50vw' ,height: '90vh'}">
+    <form class=" p-3 shadow container-fluid rounded" (ngSubmit)="onSubmit()" [formGroup]="formEditTask">
+        <div class="mb-3">Tên task <input formControlName="nameTask" class="form-control">
+            <div class="text-danger" *ngIf=" submitted &&  f['nameTask'].errors">
+                <div>Tên task bạn chưa nhập</div>
+            </div>
+        </div>
+
+
+        <div class="mb-3">Mô tả <textarea formControlName="description" class="form-control"></textarea>
+            <div *ngIf=" submitted  && f['description'].invalid">
+                <div class="text-danger" *ngIf="f['description'].errors && f['description'].errors['required']">Vui
+                    lòng
+                    nhập mô tả
+                </div>
+                <div class="text-danger" *ngIf="f['description'].errors && f['description'].errors['minlength']">Mô
+                    tải
+                    của bạn quá
+                    ngắn. Vui lòng nhập
+                    hơn 20
+                    kí tự</div>
+            </div>
+        </div>
+
+        <div class="mb-3">Dự án <select class="form-control" formControlName="idProject">
+                <option value="">Open this select menu</option>
+                <option *ngFor="let item of listProject" [ngValue]="item.id">{{item.nameProject}}</option>
+            </select>
+            <div class="text-danger" *ngIf="submitted && f['idProject'].errors">
+                Vui lòng chọn dự án
+            </div>
+        </div>
+        <div class="mb-3">Người thực hiện <select multiple formControlName="member" class="form-control pb-4">
+                <option *ngFor="let item of ListStaff" [ngValue]="item.id">{{item.firstName+" "+item.lastName}}
+                </option>
+            </select>
+            <div class="text-danger" *ngIf="submitted && f['member'].errors">Vui
+                lòng chọn người thực hiện
+            </div>
+        </div>
+        <div class="mb-3">Độ ưu tiên <select formControlName="priority" class="form-control">
+                <option value="">Open this select menu</option>
+                <option [ngValue]="1">Thấp</option>
+                <option [ngValue]="2">Trung bình</option>
+                <option [ngValue]="3">Cao</option>
+            </select>
+            <div class="text-danger" *ngIf="submitted  && f['priority'].errors">Vui
+                lòng chọn độ ưu tiên
+            </div>
+        </div>
+        <div class="mb-3">Trạng thái <select formControlName="status" class="form-control ">
+                <option value="">Open this select menu</option>
+                <option [ngValue]="0">Khởi tạo</option>
+                <option [ngValue]="1">Triển khai và kiểm thử</option>
+                <option [ngValue]="2">Hoàn tất</option>
+            </select>
+            <div class="text-danger" *ngIf="submitted  && f['status'].errors">Vui
+                lòng chọn trạng thái
+            </div>
+        </div>
+        <div class="d-flex justify-content-end ">
+            <button class="btn btn-success p-2 shadow ">Cập nhật </button>
+            <button class="btn btn-warning ms-3 p-2 shadow " (click)="onReset()">Làm mới</button>
+        </div>
+    </form>
+</p-dialog>
+
+<ng-template #notTask>
+    <div class="text-center">
+        Không tìm thấy kết quả
+    </div>
+</ng-template>
