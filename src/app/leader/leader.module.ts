@@ -26,12 +26,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TreeTableModule } from 'primeng/treetable';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
+
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 
@@ -49,7 +46,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     ControlLeftComponent,
     ControlRightComponent,
     ControlComponent,
-    HeaderComponent,
     VndPipe,
     GenderPipe,
     PriorityPipe,

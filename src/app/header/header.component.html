@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link  text-light" [routerLink]="['control']">Bảng điều khiển</a>
+                    <a class="nav-link  text-light" [routerLink]="['/leader/control']">Bảng điều khiển</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle  text-light" href="#" role="button" data-bs-toggle="dropdown"
@@ -16,8 +16,8 @@
                         Dự án
                     </a>
                     <ul class="dropdown-menu ">
-                        <li><a class="dropdown-item" [routerLink]="['create-project']">Thêm dự án</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['project']">Danh sách dự án</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/create-project']">Thêm dự án</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/project']">Danh sách dự án</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -26,8 +26,8 @@
                         Công việc
                     </a>
                     <ul class="dropdown-menu ">
-                        <li><a class="dropdown-item" [routerLink]="['create-task']">Thêm công việc</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['task']">Danh sách công việc</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/create-task']">Thêm công việc</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/task']">Danh sách công việc</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -36,15 +36,28 @@
                         Nhân viên
                     </a>
                     <ul class="dropdown-menu ">
-                        <li><a class="dropdown-item" [routerLink]="['create-staff']" href="#">Thêm nhân viên</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['staff']">Danh sách nhân viên</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/create-staff']" href="#">Thêm nhân viên</a>
+                        </li>
+                        <li><a class="dropdown-item" [routerLink]="['/leader/staff']">Danh sách nhân viên</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  text-light" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Tài khoản
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li><a class="dropdown-item" [routerLink]="['/home/login']" href="#">Đăng nhập</a>
+                        </li>
+                        <li><a class="dropdown-item" [routerLink]="['/home/changepass']">Thay đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" (click)="thoat()" href="/home/login">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" placeholder="Tìm kiếm dự án" [(ngModel)]="tk"
-                    [ngModelOptions]="{standalone:true}">
-                <button class="btn btn-success" (click)="sb()">Search</button>
+                    [ngModelOptions]="{standalone: true}">
+                <button class=" btn btn-success" (click)="sb()">Search</button>
             </form>
         </div>
     </div>

@@ -152,20 +152,10 @@
       "area": "Bắc",
       "status": "Trống",
       "id": 19
-    },
-    {
-      "firstName": "34",
-      "lastName": "-đẹp trai",
-      "ns": "2023-06-02",
-      "gender": false,
-      "area": "Nam",
-      "status": "Trống",
-      "id": 20
     }
   ],
   "ListProject": [
     {
-      "id": 1,
       "nameProject": "Quản lí trại heo",
       "startDay": "2202-09-01",
       "money": 54,
@@ -173,8 +163,11 @@
       "member": [
         1,
         2,
-        4
-      ]
+        4,
+        6,
+        7
+      ],
+      "id": 1
     },
     {
       "id": 2,
@@ -260,17 +253,17 @@
       "id": 1
     },
     {
-      "id": 2,
       "nameTask": "Thực hiện layout cho ứng dụng",
+      "description": "Thực hiện layout website, chú ý kỹ responsive",
       "idProject": 1,
       "member": [
         3,
         4,
         6
       ],
-      "description": "Thực hiện layout website, chú ý kỹ responsive",
-      "status": 0,
-      "priority": 1
+      "priority": 1,
+      "status": 2,
+      "id": 2
     },
     {
       "id": 3,

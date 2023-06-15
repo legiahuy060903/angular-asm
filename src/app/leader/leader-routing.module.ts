@@ -9,12 +9,12 @@ import { AddStaffComponent } from './add-staff/add-staff.component';
 import { ControlComponent } from './control/control.component';
 import { ListTaskComponent } from './list-task/list-task.component';
 import { ListStaffComponent } from './list-staff/list-staff.component';
+import { authenGuard } from '../guards/authen.guard';
 
 
 const routes: Routes = [
-
   {
-    path: '', component: LeaderComponent, children: [
+    path: '', component: LeaderComponent, canActivate: [authenGuard], children: [
       { path: 'project', component: ListProjectComponent, data: { breadcrumb: 'Dự án' } },
       { path: 'project/:id', component: DetailProjectComponent, data: { breadcrumb: 'Chi Tiết Dự án ' } },
       { path: 'create-project', component: AddProjectComponent, data: { breadcrumb: 'Tạo Dự án' } },

@@ -7,9 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { authenGuard } from './guards/authen.guard';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -20,7 +23,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule
   ],
-  providers: [],
+  providers: [authenGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

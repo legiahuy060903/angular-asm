@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center  mt-5">
+    <div class=" p-5 shadow">
+        <h3 class="mb-3">Đăng nhập tài khoản</h3>
+        <div class="mb-3 text-start already-account">
+            <span>Chưa có tài khoản ? <a routerLink="employee/register" class="link">Đăng ký ngay</a></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label d-block">Email</label>
+            <input class="form-control" [(ngModel)]="email">
+        </div>
+
+        <div class="mb-1">
+            <label class="form-label d-block">Mật khẩu</label>
+            <input type="password" class="form-control" [(ngModel)]="password">
+        </div>
+
+        <div class="forgot-password text-end mb-3">
+            <a routerLink="/forgot-password" class="link">
+                Quên mật khẩu
+            </a>
+        </div>
+
+        <button class="btn btn-primary w-100 login-button" (click)="onSubmit()">Đăng nhập
+        </button>
+    </div>
+</div>
+<p-toast></p-toast>

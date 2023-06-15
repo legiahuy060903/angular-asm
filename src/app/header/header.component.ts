@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../services/datasevice-service.service';
-import { Project } from '../../project';
+import { DataService } from '../services/datasevice-service.service';
+import { Project } from '../project';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
@@ -12,8 +12,12 @@ export class HeaderComponent {
   constructor(private d: DataService, private router: Router) {
 
   }
+
+  thoat() {
+    localStorage.clear();
+  }
   sb() {
-    this.router.navigate(['/', 'project']);
+    this.router.navigate(['/leader/project']);
     this.d.search.next(this.tk);
   }
 }
